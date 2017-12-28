@@ -11,8 +11,8 @@ pipeline {
       }
     }
     stage('analysis') {
-      withSonarQubeEnv('sq') {
-        steps {
+      steps {
+        withSonarQubeEnv('sq') {
           sh 'mvn sonar:sonar'
         }
       }
