@@ -13,7 +13,16 @@ pipeline {
     stage('analysis') {
       steps {
         withSonarQubeEnv('sq') {
-          sh 'mvn sonar:sonar'
+          if(${env.CHANGE_ID}) {
+            sh """
+            mvn sonar:sonar -Dsonar.analysis.mode=preview \
+              -Dsonar.github.pullRequest=${env.CHANGE_ID} \
+              -Dsonar.github.repository=srcibex/sbqs \
+              -Dsonar.github.oauth=${env.GH_TKN}
+            """
+          } else {
+            sh 'mvn sonar:sonar'
+          }
         }
       }
     }
