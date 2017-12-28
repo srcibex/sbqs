@@ -10,5 +10,10 @@ pipeline {
         sh 'mvn package'
       }
     }
+    stage('analysis') {
+      withSonarQubeEnv('sq') {
+        sh 'mvn sonar:sonar'
+      }
+    }
   }
 }
