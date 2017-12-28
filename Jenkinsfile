@@ -14,7 +14,7 @@ pipeline {
       steps {
         withSonarQubeEnv('sq') {
           script {
-            if(${env.CHANGE_ID}) {
+            if(env.CHANGE_ID) {
               sh """
               mvn sonar:sonar -Dsonar.analysis.mode=preview \
                 -Dsonar.github.pullRequest=${env.CHANGE_ID} \
