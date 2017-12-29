@@ -16,10 +16,13 @@ pipeline {
           script {
             if(env.CHANGE_ID) {
               sh """
-              mvn sonar:sonar -Dsonar.analysis.mode=preview \
+              mvn sonar:sonar \
+                -Dsonar.analysis.mode=preview \
                 -Dsonar.github.pullRequest=${env.CHANGE_ID} \
                 -Dsonar.github.repository=srcibex/sbqs \
-                -Dsonar.github.oauth=${env.SQ_TKN}
+                -Dsonar.github.oauth=${env.SQ_TKN} \
+                -Dsonar.host.url=${env.SQ_SVR} \
+                -Dsonar.login=${env.SQ_SVR_TKN}
               """
             } else {
               sh 'mvn sonar:sonar'
