@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @EnableAutoConfiguration
-public class HelloController 
+public class HelloController
 {
     @RequestMapping("/")
     @ResponseBody
-    String home() 
+    String home()
     {
         return "Hello World!";
     }
@@ -20,6 +20,10 @@ public class HelloController
 //    private void shouldBeRemoved(int unused_arg) 
 //    {
 //    	System.out.println("This is not needed");
+//    }
+//
+//    private void pleaseCreateAnIssue() {
+//      System.out.println("WHat do I Have to do");
 //    }
 
     public static void main(String[] args) throws Exception 
